@@ -1,19 +1,20 @@
-# uws
-Unix motd Script
+#Unix motd Script
 
-Instructions:
+1. Clone the repository:
+```
+git clone [https://github.com/your-username/shift-calendar.git](https://github.com/edwardtakev)
+cd shift-calendar
+```
 
-1. clone the repo
-> git clone https://github.com/edwardtakev
+2. Give the script executable permissions:
+```
+chmod +x run.sh
+```
 
-2. cd to the directory of the repo
-> cd /uws
-
-3. Give the script executable permissions
-> chmod +x update_motd.sh
-
-4. Run the script:
-> ./update_motd.sh
+3. Run the script:
+```
+./run.sh
+```
 
 This script will:
 
