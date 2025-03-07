@@ -1,2 +1,2 @@
 # uws
-Unix Welcome Script
+Unix motd Script
