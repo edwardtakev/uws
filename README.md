@@ -2,11 +2,11 @@
 
 1. Clone the repository:
 ```
-git clone [https://github.com/your-username/shift-calendar.git](https://github.com/edwardtakev)
+git clone [https://github.com/your-username/uws.git](https://github.com/edwardtakev)
 ```
 2. Navigate to repo folder
 ```
-cd shift-calendar
+cd uws
 ```
 3. Give the script executable permissions:
 ```
