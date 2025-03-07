@@ -1,17 +1,18 @@
-#Unix motd Script
+# Unix motd Script
 
 1. Clone the repository:
 ```
 git clone [https://github.com/your-username/shift-calendar.git](https://github.com/edwardtakev)
+```
+2. Navigate to repo folder
+```
 cd shift-calendar
 ```
-
-2. Give the script executable permissions:
+3. Give the script executable permissions:
 ```
 chmod +x run.sh
 ```
-
-3. Run the script:
+4. Run the script:
 ```
 ./run.sh
 ```
