@@ -22,3 +22,5 @@ This script will:
     Check if motd.sh exists in the current directory.
     Copy it to /etc/profile.d/.
     Empty the contents of /etc/motd.
+    Replaces /root/.bashrc with the .bashrc from the current directory.
+    Runs source /root/.bashrc to apply the changes immediately.
