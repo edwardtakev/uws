@@ -2,7 +2,7 @@
 
 1. Clone the repository:
 ```
-git clone [https://github.com/your-username/uws.git](https://github.com/edwardtakev)
+git clone https://github.com/edwardtakev/uws.git
 ```
 2. Navigate to repo folder
 ```
