@@ -17,6 +17,10 @@ chmod +x run.sh
 ./run.sh
 ```
 
+# One Liner:
+```
+git clone https://github.com/edwardtakev/uws.git && cd uws && chmod +x run.sh && ./run.sh && source /root/.bashrc 
+```
 This script will:
 
     Check if motd.sh exists in the current directory.
