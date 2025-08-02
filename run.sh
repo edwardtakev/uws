@@ -1,5 +1,11 @@
 #!/bin/bash
 
+RED='\e[31m'
+GREEN='\e[32m'
+YELLOW='\e[33m'
+CYAN='\e[36m'
+RESET='\e[0m'
+
 # Define the source and destination paths
 SOURCE_FILE="motd.sh"
 DEST_DIR="/etc/profile.d/"
@@ -7,64 +13,47 @@ MOTD_FILE="/etc/motd"
 BASHRC_FILE=".bashrc"
 ROOT_BASHRC="/root/.bashrc"
 
-# Check if the source file exists
 if [[ ! -f "$SOURCE_FILE" ]]; then
-    echo "Source file $SOURCE_FILE not found!"
+    echo -e "${RED}Source file $SOURCE_FILE not found!${RESET}"
     exit 1
 fi
 
-# Remove LXC banner script if it exists
 if [[ -f "${DEST_DIR}00_lxc-details.sh" ]]; then
     sudo rm -f "${DEST_DIR}00_lxc-details.sh"
-    echo "Removed existing LXC banner script: 00_lxc-details.sh"
+    echo -e "${YELLOW}Removed existing LXC banner script: 00_lxc-details.sh${RESET}"
 fi
 
-# Copy motd.sh to /etc/profile.d/
 sudo cp "$SOURCE_FILE" "$DEST_DIR"
 
-# Check if the copy was successful
 if [[ $? -eq 0 ]]; then
-    echo "$SOURCE_FILE has been copied to $DEST_DIR"
+    echo -e "${GREEN}$SOURCE_FILE has been copied to $DEST_DIR${RESET}"
 else
-    echo "Failed to copy $SOURCE_FILE to $DEST_DIR"
+    echo -e "${RED}Failed to copy $SOURCE_FILE to $DEST_DIR${RESET}"
     exit 1
 fi
 
-# Clear the contents of /etc/motd
 sudo truncate -s 0 "$MOTD_FILE"
 
-# Check if the operation was successful
 if [[ $? -eq 0 ]]; then
-    echo "/etc/motd has been cleared"
+    echo -e "${GREEN}/etc/motd has been cleared${RESET}"
 else
-    echo "Failed to clear /etc/motd"
+    echo -e "${RED}Failed to clear /etc/motd${RESET}"
     exit 1
 fi
 
-# Check if the .bashrc file exists in the current directory
 if [[ ! -f "$BASHRC_FILE" ]]; then
-    echo "No .bashrc file found in the current directory!"
+    echo -e "${RED}No .bashrc file found in the current directory!${RESET}"
     exit 1
 fi
 
-# Replace /root/.bashrc with the .bashrc from the current directory
 sudo cp "$BASHRC_FILE" "$ROOT_BASHRC"
 
-# Check if the replacement was successful
 if [[ $? -eq 0 ]]; then
-    echo ".bashrc has been replaced successfully"
+    echo -e "${CYAN}.bashrc has been replaced successfully${RESET}"
 else
-    echo "Failed to replace .bashrc"
+    echo -e "${RED}Failed to replace .bashrc${RESET}"
     exit 1
 fi
 
-# Run 'source /root/.bashrc' to apply the changes
-if [[ $- == *i* ]]; then
-    echo "Sourcing ~/.bashrc..."
-    source ~/.bashrc
-else
-    echo "If the unix is not blue, run:"
-    echo "source /root/.bashrc"
-fi
-
-echo "Script completed successfully!"
+echo -e "${GREEN}Script completed successfully!${RESET}"
+echo -e "${YELLOW}Run: source /root/.bashrc for immediate change${RESET}"
