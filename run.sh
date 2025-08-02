@@ -1,59 +1,62 @@
 #!/bin/bash
 
+# Define color constants
 RED='\e[31m'
 GREEN='\e[32m'
 YELLOW='\e[33m'
+CYAN='\e[36m'
 RESET='\e[0m'
 BOLD='\e[1m'
 
-# Define the source and destination paths
+# Define paths
 SOURCE_FILE="motd.sh"
 DEST_DIR="/etc/profile.d/"
 MOTD_FILE="/etc/motd"
 BASHRC_FILE=".bashrc"
 ROOT_BASHRC="/root/.bashrc"
 
+# Check if motd.sh exists
 if [[ ! -f "$SOURCE_FILE" ]]; then
-    echo -e "${RED}Source file $SOURCE_FILE not found!${RESET}"
+    echo -e "${BOLD}${RED}✖ Error:${RESET} ${RED}Source file '${SOURCE_FILE}' not found!${RESET}"
     exit 1
 fi
 
+# Remove default LXC banner if present
 if [[ -f "${DEST_DIR}00_lxc-details.sh" ]]; then
     sudo rm -f "${DEST_DIR}00_lxc-details.sh"
-    echo -e "${YELLOW}Removed existing LXC banner script: 00_lxc-details.sh${RESET}"
+    echo -e "${YELLOW}⚠ Removed default LXC banner: ${CYAN}00_lxc-details.sh${RESET}"
 fi
 
-sudo cp "$SOURCE_FILE" "$DEST_DIR"
-
-if [[ $? -eq 0 ]]; then
-    echo -e "${GREEN}$SOURCE_FILE has been copied to $DEST_DIR${RESET}"
+# Copy motd.sh
+if sudo cp "$SOURCE_FILE" "$DEST_DIR"; then
+    echo -e "${GREEN}✔ '${SOURCE_FILE}' has been copied to ${CYAN}${DEST_DIR}${RESET}"
 else
-    echo -e "${RED}Failed to copy $SOURCE_FILE to $DEST_DIR${RESET}"
+    echo -e "${BOLD}${RED}✖ Failed to copy '${SOURCE_FILE}' to '${DEST_DIR}'${RESET}"
     exit 1
 fi
 
-sudo truncate -s 0 "$MOTD_FILE"
-
-if [[ $? -eq 0 ]]; then
-    echo -e "${GREEN}/etc/motd has been cleared${RESET}"
+# Clear /etc/motd
+if sudo truncate -s 0 "$MOTD_FILE"; then
+    echo -e "${GREEN}✔ Cleared contents of ${CYAN}${MOTD_FILE}${RESET}"
 else
-    echo -e "${RED}Failed to clear /etc/motd${RESET}"
+    echo -e "${BOLD}${RED}✖ Failed to clear '${MOTD_FILE}'${RESET}"
     exit 1
 fi
 
+# Check for .bashrc
 if [[ ! -f "$BASHRC_FILE" ]]; then
-    echo -e "${RED}No .bashrc file found in the current directory!${RESET}"
+    echo -e "${BOLD}${RED}✖ Error:${RESET} ${RED}No '${BASHRC_FILE}' found in the current directory!${RESET}"
     exit 1
 fi
 
-sudo cp "$BASHRC_FILE" "$ROOT_BASHRC"
-
-if [[ $? -eq 0 ]]; then
-    echo -e "${GREEN}.bashrc has been replaced successfully${RESET}"
+# Replace root's .bashrc
+if sudo cp "$BASHRC_FILE" "$ROOT_BASHRC"; then
+    echo -e "${GREEN}✔ Replaced ${CYAN}/root/.bashrc${RESET}"
 else
-    echo -e "${RED}Failed to replace .bashrc${RESET}"
+    echo -e "${BOLD}${RED}✖ Failed to replace '${ROOT_BASHRC}'${RESET}"
     exit 1
 fi
 
-echo -e "${GREEN}Script completed successfully!${RESET}"
-echo -e "${YELLOW}→ Apply changes now by running: ${BOLD}${RED}source /root/.bashrc${RESET}"
+# Final message
+echo -e "${BOLD}${GREEN}✔ Script completed successfully!${RESET}"
+echo -e "${YELLOW}➤ To apply changes immediately, run: ${BOLD}${RED}source /root/.bashrc${RESET}"
