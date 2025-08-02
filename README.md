@@ -15,7 +15,7 @@ cd uws
 
 # One Liner:
 ```
-git clone https://github.com/edwardtakev/uws.git && cd uws && ./run.sh
+git clone https://github.com/edwardtakev/uws.git && cd uws && ./run.sh && source /root/.bashrc
 ```
 This script will:
 
@@ -23,4 +23,5 @@ This script will:
     Copy it to /etc/profile.d/.
     Empty the contents of /etc/motd.
     Replaces /root/.bashrc with the .bashrc from the current directory.
-    Runs source /root/.bashrc to apply the changes immediately.
+    
+    Run source /root/.bashrc to apply the changes immediately.
