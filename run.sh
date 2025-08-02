@@ -59,6 +59,12 @@ else
 fi
 
 # Run 'source /root/.bashrc' to apply the changes
-source /root/.bashrc
+if [[ $- == *i* ]]; then
+    echo "Sourcing ~/.bashrc for interactive shell..."
+    source ~/.bashrc
+else
+    echo "If the unix is not blue, run:"
+    echo "source /root/.bashrc"
+fi
 
 echo "Script completed successfully!"
