@@ -23,9 +23,13 @@ fi
 
 # Remove default LXC banner if present
 if [[ -f "${DEST_DIR}00_lxc-details.sh" ]]; then
-    sudo rm -f "${DEST_DIR}00_lxc-details.sh"
-    echo -e "${YELLOW}⚠ Removed default LXC banner: ${CYAN}00_lxc-details.sh${RESET}"
+    if sudo rm -f "${DEST_DIR}00_lxc-details.sh"; then
+        echo -e "${YELLOW}⚠ Removed default LXC banner: ${CYAN}00_lxc-details.sh${RESET}"
+    else
+        echo -e "${BOLD}${RED}✖ Failed to remove default LXC banner: ${CYAN}00_lxc-details.sh${RESET}"
+    fi
 fi
+
 
 # Copy motd.sh
 if sudo cp "$SOURCE_FILE" "$DEST_DIR"; then
