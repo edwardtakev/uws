@@ -3,7 +3,6 @@
 RED='\e[31m'
 GREEN='\e[32m'
 YELLOW='\e[33m'
-CYAN='\e[36m'
 RESET='\e[0m'
 
 # Define the source and destination paths
@@ -49,11 +48,11 @@ fi
 sudo cp "$BASHRC_FILE" "$ROOT_BASHRC"
 
 if [[ $? -eq 0 ]]; then
-    echo -e "${CYAN}.bashrc has been replaced successfully${RESET}"
+    echo -e "${GREEN}.bashrc has been replaced successfully${RESET}"
 else
     echo -e "${RED}Failed to replace .bashrc${RESET}"
     exit 1
 fi
 
 echo -e "${GREEN}Script completed successfully!${RESET}"
-echo -e "${YELLOW}Run: source /root/.bashrc for immediate change${RESET}"
+echo -e "${YELLOW}Run: source ${RED}/root/.bashrc${YELLOW} for immediate change${RESET}"
