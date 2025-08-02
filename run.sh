@@ -59,6 +59,6 @@ else
 fi
 
 # Run 'source /root/.bashrc' to apply the changes
-source "$ROOT_BASHRC"
+source /root/.bashrc
 
 echo "Script completed successfully!"
