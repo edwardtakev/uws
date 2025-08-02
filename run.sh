@@ -4,6 +4,7 @@ RED='\e[31m'
 GREEN='\e[32m'
 YELLOW='\e[33m'
 RESET='\e[0m'
+BOLD='\e[1m'
 
 # Define the source and destination paths
 SOURCE_FILE="motd.sh"
@@ -55,4 +56,4 @@ else
 fi
 
 echo -e "${GREEN}Script completed successfully!${RESET}"
-echo -e "${YELLOW}Run: source ${RED}/root/.bashrc${YELLOW} for immediate change${RESET}"
+echo -e "${YELLOW}→ Apply changes now by running: ${BOLD}${RED}source /root/.bashrc${RESET}"
