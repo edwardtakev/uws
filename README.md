@@ -8,18 +8,14 @@ git clone https://github.com/edwardtakev/uws.git
 ```
 cd uws
 ```
-3. Give the script executable permissions:
-```
-chmod +x run.sh
-```
-4. Run the script:
+3. Run the script:
 ```
 ./run.sh
 ```
 
 # One Liner:
 ```
-git clone https://github.com/edwardtakev/uws.git && cd uws && chmod +x run.sh && ./run.sh && source /root/.bashrc 
+git clone https://github.com/edwardtakev/uws.git && cd uws && ./run.sh && source /root/.bashrc 
 ```
 This script will:
 
