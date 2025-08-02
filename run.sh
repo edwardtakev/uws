@@ -52,7 +52,7 @@ sudo cp "$BASHRC_FILE" "$ROOT_BASHRC"
 
 # Check if the replacement was successful
 if [[ $? -eq 0 ]]; then
-    echo ".bashrc has been replaced with the version from the current directory"
+    echo ".bashrc has been replaced successfully"
 else
     echo "Failed to replace .bashrc"
     exit 1
@@ -60,7 +60,7 @@ fi
 
 # Run 'source /root/.bashrc' to apply the changes
 if [[ $- == *i* ]]; then
-    echo "Sourcing ~/.bashrc for interactive shell..."
+    echo "Sourcing ~/.bashrc..."
     source ~/.bashrc
 else
     echo "If the unix is not blue, run:"
