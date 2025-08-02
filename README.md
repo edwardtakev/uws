@@ -15,7 +15,7 @@ cd uws
 
 # One Liner:
 ```
-git clone https://github.com/edwardtakev/uws.git && cd uws && ./run.sh && source /root/.bashrc 
+git clone https://github.com/edwardtakev/uws.git && cd uws && ./run.sh
 ```
 This script will:
 
