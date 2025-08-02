@@ -13,6 +13,12 @@ if [[ ! -f "$SOURCE_FILE" ]]; then
     exit 1
 fi
 
+# Remove LXC banner script if it exists
+if [[ -f "${DEST_DIR}00_lxc-details.sh" ]]; then
+    sudo rm -f "${DEST_DIR}00_lxc-details.sh"
+    echo "Removed existing LXC banner script: 00_lxc-details.sh"
+fi
+
 # Copy motd.sh to /etc/profile.d/
 sudo cp "$SOURCE_FILE" "$DEST_DIR"
 
